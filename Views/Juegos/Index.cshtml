@@ -1,0 +1,47 @@
+﻿@inject IWebHostEnvironment webHostEnvironment
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+@model IEnumerable<MVCJuegos.Models.Juego>
+
+@using Microsoft.AspNetCore.Hosting
+@using System.Text.RegularExpressions
+@using MVCJuegos.Utilities
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center mt-4" id="contenedorJuegos">
+            @Html.Partial("_JuegosPartial", Model)
+        </div>
+    </div>
+
+    <!-- Paginación -->
+    <div class="container" id="pagina-nav">
+        <div class="row justify-content-center">
+            <nav aria-label="Page navigation example" class="text-center">
+                <ul class="pagination">
+                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                    {
+                        <li class="page-item @(ViewBag.PaginaActual == i ? "active" : "")">
+                            <a class="page-link" href="@Url.Action("Index", "Juegos", new { pagina = i })">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</body>
+
+</html>

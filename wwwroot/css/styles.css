@@ -1,0 +1,142 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 5px solid #000000;
+    position: relative;
+}
+
+.card-img-container {
+    width: 100%; /* Ajustar al ancho de la tarjeta */
+    height: 450px; /* Altura fija, ajusta según tus necesidades */
+    overflow: hidden; /* Ocultar partes de la imagen que exceden el contenedor */
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajustar la imagen al contenedor manteniendo su relación de aspecto */
+    border-radius: 15px; /* Ajustar el radio de borde si es necesario */
+}
+
+#img-info {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    transition: all .2s;
+}
+
+.img-fluid {
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    transition: all .2s;
+}
+
+    .img-fluid:hover {
+        transform: scale(1.1);
+    }
+
+.card-body {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: -100%;
+    position: absolute;
+    background: #1f3d4738;
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    color: #fff;
+    font-family: 'Teko', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 2s;
+}
+
+.card:hover .card-body {
+    right: 0;
+}
+
+.card-title {
+    font-size: 40px;
+    font-weight: 200;
+}
+
+.card-subtitle {
+    text-transform: capitalize !important;
+    font-size: 25px !important;
+    font-weight: 150 !important;
+}
+
+.card-info {
+    font-size: 20px !important;
+    line-height: 25px !important;
+    font-weight: 400 !important;
+}
+
+.card-btn {
+    color: #fff;
+    width: 200px;
+    background: #2089c2;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    outline: none;
+    font-weight: 350;
+    border: none;
+    cursor: pointer;
+    align-content: center;
+}
+
+.search-input {
+    width: 50%;
+    min-width: 200px; /* Asegura que el input tenga un ancho mínimo razonable en pantallas pequeñas */
+}
+
+.col-min {
+    width: 20%;
+    white-space: nowrap;
+}
+
+
+#Contenedor-Info {
+    font-family: 'Fjalla One', sans-serif !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 8px 8px 5px 0px #bdbdbdbf !important;
+    border-radius: 20px !important;
+    background-color: white;
+    padding: 1rem;
+}
+
+#Contenedor-Info > .row {
+    width: 100%;
+    border: 0 !important;
+}
+
+.table {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+#pagina-nav {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 10vh !important;
+}
+
+main {
+    margin-top: 120px !important;
+}

@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MVCJuegos.styles.css" asp-append-version="true" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="~/css/styles.css">
+     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--Inicio del menu -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="container-fluid alig">
+                <!-- icono -->
+                <a class="navbar-brand" asp-area="" asp-controller="Juegos" asp-action="Index" >
+                    <img src="~/images/gameover.png" class="img-fluid" style="width: 60px; height: 60px;" alt="logo game over" />
+                </a>
+                <!-- Boton del menu -->
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#menu"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Juegos" asp-action="Index" style="font-size:20px">Inicio</a>
+                        </li>                       
+                    </ul>
+                    <!-- Contenedor del buscador -->
+                    <form class="navbar-search d-flex flex-grow-1 justify-content-center" method="get" action="@Url.Action("Index", "Juegos")">
+                        <input class="form-control search-input" type="search" aria-label="Search" id="buscarJuego" placeholder="Buscar" name="searchTerm" value="" />
+                    </form>
+                    <hr class="text-white-50" accesskey="" />
+
+                   
+                    <!-- Enlaces Varios -->
+                    <ul class="navbar-nav flex-row flex-wrap text-light">
+                        <li class="nav-item col-6 col-md-auto p-3">
+                            <a href="https://www.ea.com/es-mx" target="_blank" class="text-white text-decoration-none">
+                                <img src="~/images/ea.png" class="img-fluid" style="width: 38px; height: 38px;" alt="logo de EA games" title="EA games">
+                                <small class="d-md-none ms-2">
+                                    Electronic Arts
+                                </small>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-auto p-3">
+                            <a href="https://www.ubisoft.com/es-mx/" target="_blank" class="text-white text-decoration-none">
+                                <img src="~/images/ubisoft.png" class="img-fluid" style="width: 38px; height: 38px;" alt="logo de Ubisoft" title="Ubisoft">
+                                <small class="d-md-none ms-2">
+                                    Ubisoft
+                                </small>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-auto p-3">
+                            <a href="https://store.steampowered.com/?l=spanish" target="_blank" class="text-white text-decoration-none">
+                                <img src="~/images/steam.png" class="img-fluid" style="width: 38px; height: 38px;" alt="logo de Steam" title="Steam">
+                                <small class="d-md-none ms-2">
+                                    Steam 
+                                </small>
+                           </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-auto p-3">
+                            <a href="https://store.epicgames.com/es-MX/" target="_blank" class="text-white text-decoration-none">
+                                <img src="~/images/epicgames.png" class="img-fluid" style="width: 38px; height: 38px;" alt="logo de Epic Games" title="Epic Games">
+                                <small class="d-md-none ms-2">
+                                    Epic Games
+                                </small>
+                            </a>
+                        </li>
+                        <li class="nav-item col-6 col-md-auto p-3">
+                            <a href="https://www.blizzard.com/es-es/" target="_blank" class="text-white text-decoration-none">
+                                <img src="~/images/battlenet.png" class="img-fluid" style="width: 38px; height: 38px;" alt="logo de Battle.net" title="Battle.net">
+                                <small class="d-md-none ms-2">
+                                    Battle.net
+                                </small>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Boton Informacion 
+                    <form class="d-flex"></form>
+                    <button class="btn btn-outline-danger d-none d-md-inline-block" type="submit">
+                        Informacion
+                    </button>
+                    -->
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container mt-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - JuegosMVC - <a asp-area="" asp-controller="Juegos" asp-action="Index">Informacion</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/BuscarJuego.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    
+</body>
+</html>

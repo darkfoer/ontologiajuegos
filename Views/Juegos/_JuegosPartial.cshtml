@@ -1,0 +1,32 @@
+﻿@inject IWebHostEnvironment webHostEnvironment
+@model IEnumerable<MVCJuegos.Models.Juego>
+@using Microsoft.AspNetCore.Hosting
+@using System.Text.RegularExpressions
+@using MVCJuegos.Utilities
+
+@foreach (var item in Model)
+{
+    string nombreFormateado = FormatnameUtilities.FormatearNombreArchivo(item.nombreJuego);
+    <div class="col-10 col-md-6 col-lg-3 mb-4 juego-columna">
+        <!-- Cada juego ocupará 6 columnas en dispositivos medianos, 3 en grandes y 3 en extra grandes -->
+        <div class="card">
+            <!-- si existe y coincide con el nombre formateado del juego pone esa imagen, caso contrario pone la imagen prueba.png -->
+            <div class="card-img-container">
+                @{
+                    string imagePath = ImageHelper.GetImagePath(webHostEnvironment, Url, nombreFormateado);
+                }
+                <img src="@imagePath" class="card-img" alt="Imagen de juego @item.nombreJuego" />
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">@item.nombreJuego</h1>
+                <p class="card-subtitle">Valoracion: @item.valorNotaJuego</p>
+                <p class="card-info">
+                    Clasificacion: +@item.clasificacionJuego<br />
+                    Genero: @string.Join(", ", item.generos.Select(g => g.nombreGenero))<br />
+                    Plataformas: @string.Join(", ", item.plataformas.Select(p => p.nombrePlataforma))
+                </p>
+                <button onclick="window.location.href = '@Url.Action("InformacionJuego", "Juegos", new { nombreJuego = item.nombreJuego })'" class="btn btn-primary">Más info</button>
+            </div>
+        </div>
+    </div>
+}

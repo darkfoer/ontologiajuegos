@@ -1,0 +1,126 @@
+﻿@inject IWebHostEnvironment webHostEnvironment
+@model IEnumerable<MVCJuegos.Models.Juego>
+
+@{
+    foreach(var nombre in Model){
+    ViewData["Title"] = "Detalles de " + nombre.nombreJuego;
+    }
+}
+
+@using Microsoft.AspNetCore.Hosting
+@using System.Text.RegularExpressions
+@using MVCJuegos.Utilities
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Juego</title>
+</head>
+
+<body>
+    <div class="container mt-5 d-flex justify-content-center align-items-center" id="Contenedor-Info" >
+        <div class="row border border-2 rounded"> 
+            @foreach (var item in Model)
+            {
+
+                string nombreFormateado = FormatnameUtilities.FormatearNombreArchivo(item.nombreJuego);
+                <!-- Columna izquierda para la imagen -->
+                <div class="col-md-4">
+                    @{
+                        string imagePath = ImageHelper.GetImagePath(webHostEnvironment, Url, nombreFormateado);
+                    }
+                    <img src="@imagePath" class="img-fluid float-start card-img" id="img-info" alt="Imagen de juego @item.nombreJuego" />
+                </div>
+                <!-- Columna derecha para el contenido -->
+                <div class="col-xl-8 align-content-center">
+                    <!-- Fila para el título -->
+                    <div class="row mb-6">
+                        <div class="col-12">
+                            <h1 class="display-4">@item.nombreJuego</h1>
+                        </div>
+                    </div>
+                    <!-- Tabla para los detalles -->
+                    <div class="col-xl-12">
+                    <table class="table table-hover align-content-center">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-start align-middle col-min">Género:</th>
+                                <td class="align-middle text-start">@Html.DisplayFor(modelItem => item.generos)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Plataforma:</th>
+                                <td class="align-middle text-start">@Html.DisplayFor(modelItem => item.plataformas)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Clasificación:</th>
+                                <td class="align-middle text-start">+@item.clasificacionJuego</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Valor Nota:</th>
+                                <td class="align-middle text-start">@item.valorNotaJuego</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Fecha Lanzamiento:</th>
+                                <td class="align-middle text-start">@item.diaLanzamientoJuego/@item.mesLanzamientoJuego/@item.annioLanzamientoJuego</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Desarrollador:</th>
+                                <td class="align-middle text-start">@Html.DisplayFor(modelItem => item.estudiosDesarrollo)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Distribuidor:</th>
+                                <td class="align-middle text-start">@Html.DisplayFor(modelItem => item.distribuidores)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Formato Disponible:</th>
+                                <td class="align-middle text-start">@Html.DisplayFor(modelItem => item.formatos)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Modo Juego:</th>
+                                <td class="align-middle text-start">@Html.DisplayFor(modelItem => item.modoJuegos)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="align-middle text-start col-min">Modo Disponible:</th>
+                                <td class="align-middle text-start">@Html.DisplayFor(modelItem => item.modoDisponibles)</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="col-min">Voces:</th>
+                                <td style="max-height: 200px; overflow-y: auto;" class="align-middle text-start">
+                                    @foreach (var idioma in item.idiomas)
+                                    {
+                                        @foreach (var voz in idioma.vocez)
+                                        {
+                                                voz.nombreVoz = voz.nombreVoz.Replace("Voces", "").Trim();
+                                                <p>@voz.nombreVoz</p>
+                                            
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="col-min">Interfaces:</th>
+                                <td style="max-height: 200px; overflow-y: auto;" class="align-middle text-start">
+                                    @foreach (var idioma in item.idiomas)
+                                    {
+                                        @foreach (var interfaz in idioma.interfazes)
+                                        {
+                                                interfaz.nombreInterfaz = interfaz.nombreInterfaz.Replace("Interfaz", "").Trim();
+                                                <p>@interfaz.nombreInterfaz</p>
+                                            
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</body>
+</html>
